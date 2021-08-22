@@ -8,6 +8,34 @@ body {
     font-weight: 900;
 }
 
+.border{
+    border: 1px solid black;
+}
+.button {
+    display: block;
+    width: 115px;
+    height: 40px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    margin: 5px
+}
+
+a,a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+.info-tempo{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
 .form-group input:focus {
     outline: 0px !important;
     box-shadow: none !important;

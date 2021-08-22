@@ -1,0 +1,27 @@
+{
+    "temp": 27, 
+    "date": "22/08/2021",
+    "time": "13:28",
+    "condition_code": "29",
+    "description": "Parcialmente nublado", 
+    "currently": "dia", 
+    "cid": "",
+    "city": "Serra, ES",
+    "img_id": "29", 
+    "humidity": 57, 
+    "wind_speedy": "5.66 km/h", 
+    "sunrise": "05:58 am", 
+    "sunset": "05:30 pm",
+    "condition_slug": "cloud", 
+    "city_name": "Serra", 
+    "forecast": [
+        {
+            "date": "22/08", 
+            "weekday": "Dom", 
+            "max": 26, 
+            "min": 19, 
+            "description": "Parcialmente nublado", 
+            "condition": "cloudly_day"
+        }
+    ]
+}
