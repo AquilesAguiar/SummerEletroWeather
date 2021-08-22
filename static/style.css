@@ -19,18 +19,3 @@ body {
     outline: none;
     box-shadow: none;
 }
-
-.container {
-    height: 80%;
-    background-color: black;
-}
-
-.cima {
-    height: 50%;
-    background-color: #7699f3;
-}
-
-.baixo {
-    height: 50%;
-    background-color: #C4C4C4;
-}
