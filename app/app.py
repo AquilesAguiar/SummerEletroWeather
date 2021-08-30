@@ -14,11 +14,11 @@ def index():
 
 @app.route('/lampada/on')
 def lampadaOn():
-    return redirect(url_for('index'))
+    return {'lampada': True}
 
 @app.route('/lampada/off')
 def lampadaOff():
-    return redirect(url_for('index'))
+    return {'lampada': False}
 
 
 if __name__ == '__main__':
