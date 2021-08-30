@@ -19,16 +19,10 @@ def index():
     req = req['results']
     cod_img = req['img_id']
     img = f'http://assets.api.hgbrasil.com/weather/images/{cod_img}.png'
-    print("========== BUSCANDO API ==========")
-    pprint(req)
-
-    # Json com apenas o primeiro indice da lista
-    tempo1 = req["forecast"][0]
-    # Retira o primeiro indice
-    req["forecast"].pop(0)
-    # Pega a lista de json -1 indice
-    tempo2 = req["forecast"]
-    return render_template("index.html",tempo = req, tempo_img = img, tempo1= tempo1 ,tempo2= tempo2 )
+    
+    tempoProxDias = req["forecast"]
+    
+    return render_template("index.html",tempo = req, tempo_img = img, tempoProxDias = tempoProxDias)
 
 
 

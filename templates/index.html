@@ -45,24 +45,27 @@
                                     <button type="button" data-bs-target="#trailers" data-bs-slide-to="9" aria-label="Slide 10"></button>
                                 </div>
                                 <div class="trailerSlider carousel-inner" style=" padding-bottom: 50px">
-                                    <div class="carousel-item active">
-                                        <div id="cover">
-                                            Dia:{{tempo1.weekday}} - {{tempo1.date}} <br>
-                                            Maxima: {{tempo1.max}}° <br>
-                                            Minima: {{tempo1.min}}° <br>
-                                            {{tempo1.description}}
-                                        </div>
-                                    </div>
-
-                                    {%for dia in range(tempo2|length)%}
-                                        <div class="carousel-item">
-                                            <div id="cover">
-                                                Dia:{{tempo2[dia].weekday}} - {{tempo2[dia].date}} <br>
-                                                Maxima: {{tempo2[dia].max}}° <br>
-                                                Minima: {{tempo2[dia].min}}° <br>
-                                                {{tempo2[dia].description}}
+                                
+                                    {%for dia in tempoProxDias%}
+                                        {%if loop.first%}
+                                            <div class="carousel-item active">
+                                                <div id="cover">
+                                                    Dia:{{tempoProxDias[loop.index0].weekday}} - {{tempoProxDias[0].date}} <br>
+                                                    Maxima: {{tempoProxDias[loop.index0].max}}° <br>
+                                                    Minima: {{tempoProxDias[loop.index0].min}}° <br>
+                                                    {{tempoProxDias[loop.index0].description}}
+                                                </div>
                                             </div>
-                                        </div>
+                                        {%else%}
+                                            <div class="carousel-item">
+                                                <div id="cover">
+                                                    Dia:{{tempoProxDias[loop.index0].weekday}} - {{tempoProxDias[loop.index0].date}} <br>
+                                                    Maxima: {{tempoProxDias[loop.index0].max}}° <br>
+                                                    Minima: {{tempoProxDias[loop.index0].min}}° <br>
+                                                    {{tempoProxDias[loop.index0].description}}
+                                                </div>
+                                            </div>
+                                        {%endif%}
                                     {%endfor%}
                                 </div>
 
