@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,url_for,redirect
+from flask import Flask, render_template, request,url_for
 import requests
 from pprint import pprint
 
@@ -29,11 +29,11 @@ def index():
 
 @app.route('/lampada/on')
 def lampadaOn():
-    return redirect(url_for('index'))
+    return {'lampada': True}
 
 @app.route('/lampada/off')
 def lampadaOff():
-    return redirect(url_for('index'))
+    return {'lampada': False}
 
 
 if __name__ == '__main__':
