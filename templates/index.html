@@ -11,8 +11,8 @@
     <body>
         <div class="container">
             <div class="row" style="margin-top:20px">
-               <div class="col-md-1"></div>
-               <div class="col-md-10">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
 
                     <div class="row">
 
@@ -47,25 +47,25 @@
                                 <div class="trailerSlider carousel-inner" style=" padding-bottom: 50px">
                                     <div class="carousel-item active">
                                         <div id="cover">
-                                            Dia:{{tempo1.weekday}} - {{tempo1.date}} <br> 
+                                            Dia:{{tempo1.weekday}} - {{tempo1.date}} <br>
                                             Maxima: {{tempo1.max}}° <br>
                                             Minima: {{tempo1.min}}° <br>
                                             {{tempo1.description}}
                                         </div>
                                     </div>
-                            
+
                                     {%for dia in range(tempo2|length)%}
                                         <div class="carousel-item">
                                             <div id="cover">
-                                                Dia:{{tempo2[dia].weekday}} - {{tempo2[dia].date}} <br> 
+                                                Dia:{{tempo2[dia].weekday}} - {{tempo2[dia].date}} <br>
                                                 Maxima: {{tempo2[dia].max}}° <br>
                                                 Minima: {{tempo2[dia].min}}° <br>
                                                 {{tempo2[dia].description}}
                                             </div>
                                         </div>
-                                    {%endfor%} 
+                                    {%endfor%}
                                 </div>
-                            
+
                             </div>
                             <a class="button" href="{{url_for('index')}}">Recarregar</a>
                         </div>
@@ -86,9 +86,9 @@
 
                     </div>
 
-               </div>
+            </div>
 
-               <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
