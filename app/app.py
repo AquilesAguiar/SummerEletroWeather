@@ -12,22 +12,23 @@ def index():
     tempoProxDias = clima.getProxTempo()
     return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias)
 
-@app.route('/lampada/estado',method=['POST'])
+
+@app.route('/lampada/estado',methods=['POST'])
 def lampadaEstado():
     estadoLampada = request.form['estado'] 
     return {'lampada': True}
 
-@app.route('/lampada/modo',method=['POST'])
+@app.route('/lampada/modo',methods=['POST'])
 def lampadaModo():
     modoLampada = request.form['modo'] 
     return {'lampada': False}
 
-@app.route('/lampada/intesidade',method=['POST'])
+@app.route('/lampada/intesidade',methods=['POST'])
 def lampadaIntesidade():
     intesidadeLampada = request.form['intesidade']
     return {'lampada': 'forte'}
 
-@app.route('/lampada/mudaCor',method=['POST'])
+@app.route('/lampada/mudaCor',methods=['POST'])
 def lampadaMudaCor():
     mudaCorLampada = request.form['mudaCor']
     return {'lampada': 'cor'}
