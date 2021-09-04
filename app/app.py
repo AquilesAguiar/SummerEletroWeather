@@ -11,10 +11,8 @@ def index():
     clima = Tempo()
     tempo = clima.getTempo()
     img = clima.getFotoTempo()
-    condicaoCor = jsonCondicao.lerJson()
+    condicaoCor = jsonCondicao.lerJson(tempo['condition_code'])
     tempoProxDias = clima.getProxTempo()
-    tempoProxDiasImg = clima.getProxTempoImg(condicaoCor)
-    print(tempoProxDiasImg)
     return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias)
 
 
