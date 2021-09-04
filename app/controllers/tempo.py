@@ -17,3 +17,22 @@ class Tempo():
         req = self.getTempo()
         tempoProxDias = req["forecast"]
         return tempoProxDias
+    
+    def getProxTempoImg(self,condicoes):
+        diasImg = []
+        dias = self.getProxTempo()
+        for cond in condicoes:
+            for dia in dias:
+                if condicoes[cond] == dia['description']:
+                    img = 'http://assets.api.hgbrasil.com/weather/images/{0}.png'.format(cond)
+                    diasImg.append(
+                        {'date': dia['date'],
+                         'weekday': dia['weekday'], 
+                         'max': dia['max'], 
+                         'min': dia['min'], 
+                         'description': dia['description'], 
+                         'condition': dia['condition'],
+                         'img':img
+                         }
+                    )
+        return diasImg
