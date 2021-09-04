@@ -1,14 +1,17 @@
 from flask import Flask, render_template, request,url_for,redirect
 from controllers.tempo import Tempo
+from controllers.lerJson import lerJson
 # from controllers import led
 
 app = Flask('SummerEltroWeather')
 
 @app.route('/')
 def index():
+    jsonCondicao = lerJson("static\json\condicoes.json")
     clima = Tempo()
     tempo = clima.getTempo()
     img = clima.getFotoTempo()
+    condicaoCor = jsonCondicao.lerJson(tempo['condition_code'])
     tempoProxDias = clima.getProxTempo()
     return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias)
 

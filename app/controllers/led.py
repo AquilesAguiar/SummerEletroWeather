@@ -11,11 +11,13 @@ class led():
         self.LED_INVERT = led_invert         # True para inverter o sinal (Apenas quando usar um NPN transistor level shift)
         self.LED_CHANNEL = led_channel       # Altere para 1 para as GPIOs (13, 19, 41, 45 ou 53)
 
+
         def oneCollor(strip, color : Color) -> None:
             for x in range(0, self.LED_COUNT):
                 strip.setPixelColor(x, color)
             
             strip.show()
+        
 
 if __name__ == '__main__':
     fitaLed = led(60, 18, 8000, 10, 255, False, 0)
