@@ -2,8 +2,9 @@
 var estado = document.getElementsById()
 fetch('/lampada/estado',{
     method: "POST",
-body: JSON.stringify(_data),
-headers: {"Content-type": "application/json; charset=UTF-8"}})
+    body: JSON.stringify(_data),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+})
 .then(response => response.json())
 .catch(err => console.error(err))
 

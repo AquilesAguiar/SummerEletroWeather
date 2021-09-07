@@ -10,13 +10,20 @@ class led():
         self.LED_BRIGHTNESS = led_brightness # Quanto mais próximo do 0 mais escuro e mais claro é proximo do 255
         self.LED_INVERT = led_invert         # True para inverter o sinal (Apenas quando usar um NPN transistor level shift)
         self.LED_CHANNEL = led_channel       # Altere para 1 para as GPIOs (13, 19, 41, 45 ou 53)
+        
+        self.strip = PixelStrip(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT, self.LED_BRIGHTNESS, self.LED_CHANNEL)
+        # Inicializa a biblioteca
+        self.strip.begin()
 
-
-        def oneCollor(strip, color : Color) -> None:
+        def oneCollor(color : Color) -> None:
             for x in range(0, self.LED_COUNT):
-                strip.setPixelColor(x, color)
+                self.setPixelColor(x, color)
             
-            strip.show()
+            self.strip.show()
+        
+        def coresClima(self,json,chaveJson):
+            return
+
         
 
 if __name__ == '__main__':
@@ -26,9 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-    strip = PixelStrip(fitaLed.LED_COUNT, fitaLed.LED_PIN, fitaLed.LED_FREQ_HZ, fitaLed.LED_DMA, fitaLed.LED_INVERT, fitaLed.LED_BRIGHTNESS, fitaLed.LED_CHANNEL)
-    # Inicializa a biblioteca
-    strip.begin()
+   
 
     print('Press Ctrl-C to quit.')
     if not args.clear:
@@ -38,8 +43,8 @@ if __name__ == '__main__':
 
         while True:
             print('Ligando em uma cor')
-            fitaLed.oneCollor(strip, Color(0, 255, 0))
+            fitaLed.oneCollor(Color(0, 255, 0))
 
     except KeyboardInterrupt:
         if args.clear:
-            fitaLed.oneCollor(strip, Color(0, 0, 0))
+            fitaLed.oneCollor(Color(0, 0, 0))
