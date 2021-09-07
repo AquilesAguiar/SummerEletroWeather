@@ -6,11 +6,13 @@ body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
+
 }
 
-.border{
+.border {
     border: 1px solid black;
 }
+
 .button {
     display: block;
     width: 115px;
@@ -25,12 +27,13 @@ body {
     margin: 5px
 }
 
-a,a:hover{
+a,
+a:hover {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
-.info-tempo{
+.info-tempo {
     text-align: center;
     font-size: 1.5em;
 }
@@ -46,4 +49,32 @@ a,a:hover{
 .btn.active:focus {
     outline: none;
     box-shadow: none;
+}
+
+.container {
+    height: 100%;
+    background-color: white;
+    box-shadow: inset 0 0 1em grey, 0 0 4em black;
+    position: inherit;
+}
+
+/* Vamos kikar agr */
+
+@keyframes kika {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(4%);
+        /* width: ; */
+        /* height: ; */
+    }
+}
+
+.vaiKikarSim {
+    
+    animation: kika .8s cubic-bezier(0.55, 0, 0, 0);
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }
