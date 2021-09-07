@@ -6,7 +6,6 @@ body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-
 }
 
 .border {
@@ -52,10 +51,10 @@ a:hover {
 }
 
 .container {
-    height: 100%;
+    height: 900px;
     background-color: white;
     box-shadow: inset 0 0 1em grey, 0 0 4em black;
-    position: inherit;
+    /* position: inherit; */
 }
 
 /* Vamos kikar agr */
