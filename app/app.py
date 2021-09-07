@@ -7,12 +7,12 @@ app = Flask('SummerEltroWeather')
 
 @app.route('/')
 def index():
-    jsonCondicao = lerJson("static\json\condicoes.json")
+    jsonCondicao = lerJson("static/json/condicoes.json")
     clima = Tempo()
     tempo = clima.getTempo()
     img = clima.getFotoTempo()
-    condicaoCor = jsonCondicao.lerJson(tempo['condition_code'])
-    tempoProxDias = clima.getProxTempo()
+    condicaoCor = jsonCondicao.lerJson()
+    tempoProxDias = clima.getProxTempoImg(condicaoCor)
     return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias)
 
 
