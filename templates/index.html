@@ -170,7 +170,9 @@
                         <h3>Escolhe a cor</h3>
                         <span class="color-picker mt-5 ml-3">
                             <label for="colorPicker" class=" mt-5 ml-3">
+                                <!-- disable="True" -->
                                 <input type="color" value="#1DB8CE" id="colorPicker">
+                                <input type="hidden" id="corSelecionada" value="">
                             </label>
                         </span>
                     </div>
@@ -189,7 +191,7 @@
                             <h4 style="font-weight: bolder;">Ligar/Desligar Lâmpada</h4>
                             <!-- Rectangular switch -->
                             <label class="switch estado">
-                                <input type="checkbox">
+                                <input type="checkbox" id="estado">
                                 <span class="slider"></span>
                             </label>
 

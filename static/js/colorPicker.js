@@ -1,17 +1,7 @@
-document.querySelectorAll('input[type=color]').forEach(function (picker) {
-
-    var targetLabel = document.querySelector('label[for="' + picker.id + '"]')
-    /* PEGA O VALOR RGB */
-    //,
-    // codeArea = document.createElement('span');
-    
-    codeArea.innerHTML = picker.value;
-    targetLabel.appendChild(codeArea);
-    
+document.querySelectorAll('input[type=color]').forEach(function (picker) {    
     picker.addEventListener('change', function () {
-        /* PEGA O VALOR RGB */
-        // codeArea.innerHTML = picker.value;
-        console.log(picker.value);
-        // targetLabel.appendChild(codeArea);
+        const cor = "rgb(" + picker.value.match(/[A-Za-z0-9]{2}/g).map(function(v) { return parseInt(v, 16) }).join(",") + ")";
+        document.getElementById('corSelecionada').value = cor
     });
 });
+
