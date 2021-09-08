@@ -182,16 +182,17 @@
 
                             <!-- Rectangular switch -->
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" id="modo">
                                 <span class="slider"></span>
                             </label>
                             
                         </div>
+
                         <div class="row">
                             <h4 style="font-weight: bolder;">Ligar/Desligar Lâmpada</h4>
                             <!-- Rectangular switch -->
                             <label class="switch estado">
-                                <input type="checkbox" id="estado">
+                                <input type="checkbox" checked id="estado">
                                 <span class="slider"></span>
                             </label>
 
@@ -211,8 +212,11 @@
                 width: 20,  // Tamanho
                 handleSize: "+5",
                 sliderType: "min-range",
-                value: 40
+                value: 40,
+                change: "enviaItensidade"
             });
+
+            
 
         </script>
         <!-- ColorPicker -->

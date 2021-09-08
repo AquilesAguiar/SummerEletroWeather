@@ -19,22 +19,23 @@ def index():
 
 @app.route('/lampada/estado',methods=['POST'])
 def lampadaEstado():
-    estadoLampada = request.form['estado'] 
+    estadoLampada = request.get_json()
     return {'lampada': True}
 
 @app.route('/lampada/modo',methods=['POST'])
 def lampadaModo():
-    modoLampada = request.form['modo'] 
+    modoLampada = request.get_json()
     return {'lampada': False}
 
 @app.route('/lampada/intesidade',methods=['POST'])
 def lampadaIntesidade():
-    intesidadeLampada = request.form['intesidade']
+    intesidadeLampada = request.get_json()
     return {'lampada': 'forte'}
 
 @app.route('/lampada/mudaCor',methods=['POST'])
 def lampadaMudaCor():
-    mudaCorLampada = request.form['mudaCor']
+    mudaCorLampada = request.get_json()
+    print(mudaCorLampada)
     return {'lampada': 'cor'}
 
 
