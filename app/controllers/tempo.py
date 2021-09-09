@@ -1,8 +1,20 @@
 import requests
+from controllers.lerJson import lerJson
+import netifaces
+
+gateways = netifaces.gateways()
+gateway_padrao = gateways['default'][netifaces.AF_INET][0]
 class Tempo():
     def __init__(self):
-        self.url = 'https://api.hgbrasil.com/weather?key=00764386&user_ip=remote'
-        self.req = requests.get(self.url).json()
+        jsonKeys = lerJson("static\json\keys.json")
+        jsonKeys = jsonKeys.lerJson()
+        keys = jsonKeys['keys']
+        for key in keys:
+            self.url = 'https://api.hgbrasil.com/weather?key='+key+'&user_ip='+gateway_padrao
+            self.req = requests.get(self.url)
+            if self.req.status_code == 200:
+                self.req = self.req.json()
+                break
     
     def getTempo(self):
         return self.req['results']

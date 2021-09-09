@@ -1,15 +1,3 @@
-var link = window.location.href
-setInterval(function(){
-    fetch(link+'/?type=json')
-    .then(response => response.json())
-    .then(json=>{
-        // to Do 
-
-        // Jogar as informações de volta pro python
-        // Regarregar as informações de volta na pagina
-    });
-},300000)
-
 //Liga e desliga lampada
 var estado = document.getElementById("estado")
 estado.addEventListener("click",function(){
@@ -19,6 +7,7 @@ estado.addEventListener("click",function(){
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json())
+    .then(json=>"")
     .catch(err => console.error(err))
 })
 
@@ -31,6 +20,7 @@ modo.addEventListener("click",function(){
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json())
+    .then(json=>"")
     .catch(err => console.error(err))
 })
 
@@ -42,6 +32,7 @@ function enviaItensidade(valor){
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json())
+    .then(json=>"")
     .catch(err => console.error(err))
 }
 

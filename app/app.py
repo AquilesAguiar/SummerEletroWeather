@@ -1,41 +1,34 @@
 from flask import Flask, render_template, request,url_for,redirect
-from flask.helpers import make_response
 from controllers.tempo import Tempo
 from controllers.lerJson import lerJson
-import datetime
 # from controllers import led
 
 app = Flask('SummerEltroWeather')
 
 @app.route('/')
 def index():
-    
     jsonCondicao = lerJson("static\json\condicoes.json")
-    # jsonCores = lerJson("static\json\coresLed.json")
+    jsonCores = lerJson("static\json\coresLed.json")
     clima = Tempo()
     tempo = clima.getTempo()
+
     img = clima.getFotoTempo()
+
     condicaoCor = jsonCondicao.lerJson()
+    cor = jsonCores.lerJson()
+    cor = cor[tempo['condition_slug']]
     tempoProxDias = clima.getProxTempoImg(condicaoCor)
-
-    red = make_response(render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias))
+    print('rgb('+cor[0]+')')
     if request.args.get('type'):
-        return {"tempo":tempo, "tempo_img":img, "tempoProxDias":tempoProxDias}
-    return red
+        return {"tempo":tempo, "tempo_img":img, "tempoProxDias":tempoProxDias,"cor":'rgb('+cor[0]+')'}
+    return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias,cor='rgb('+cor[0]+')')
 
-@app.context_processor
-def my_utility_processor():
-    def teste():
-        jsonCondicao = lerJson("static\json\condicoes.json")
-        # jsonCores = lerJson("static\json\coresLed.json")
-        clima = Tempo()
-        tempo = clima.getTempo()
-        img = clima.getFotoTempo()
-        condicaoCor = jsonCondicao.lerJson()
-        tempoProxDias = clima.getProxTempoImg(condicaoCor)
-        return dict(tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias)
 
-    return teste()
+@app.route('/mudaLuz',methods=['POST'])
+def mudaLuz():
+    dados = request.get_json()
+    print(dados)
+    return {"true":True}
 
 @app.route('/lampada/estado',methods=['POST'])
 def lampadaEstado():
