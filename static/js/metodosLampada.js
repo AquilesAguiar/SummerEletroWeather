@@ -1,3 +1,15 @@
+var link = window.location.href
+setInterval(function(){
+    fetch(link+'/?type=json')
+    .then(response => response.json())
+    .then(json=>{
+        // to Do 
+
+        // Jogar as informações de volta pro python
+        // Regarregar as informações de volta na pagina
+    });
+},300000)
+
 //Liga e desliga lampada
 var estado = document.getElementById("estado")
 estado.addEventListener("click",function(){
@@ -9,7 +21,6 @@ estado.addEventListener("click",function(){
     .then(response => response.json())
     .catch(err => console.error(err))
 })
-
 
 //Troca o modo da lampada
 var modo = document.getElementById("modo")
