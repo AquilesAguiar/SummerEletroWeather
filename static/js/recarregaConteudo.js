@@ -3,7 +3,11 @@ setInterval(function(){
     fetch(link+'/?type=json')
     .then(response => response.json())
     .then(json=>{
-        
+
+        let tempo = json['tempo']
+        let tempo_img = json['tempo_img']
+        let tempoProxDias = json['tempoProxDias']
+        let cor = json['cor']
         
         fetch(link+'mudaLuz',{
             method: 'POST',

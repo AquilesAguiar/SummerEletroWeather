@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,url_for,redirect
+from flask import Flask, render_template, request,url_for,redirect,make_response
 from controllers.tempo import Tempo
 from controllers.lerJson import lerJson
 # from controllers import led
@@ -18,16 +18,18 @@ def index():
     cor = jsonCores.lerJson()
     cor = cor[tempo['condition_slug']]
     tempoProxDias = clima.getProxTempoImg(condicaoCor)
-    print('rgb('+cor[0]+')')
     if request.args.get('type'):
         return {"tempo":tempo, "tempo_img":img, "tempoProxDias":tempoProxDias,"cor":'rgb('+cor[0]+')'}
     return render_template("index.html",tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias,cor='rgb('+cor[0]+')')
 
+# @app.route('/',methods=['POST'])
+# def reloadPage():
+#     dados = request.get_json()
+#     return make_response(render_template("index.html",tempo = dados['tempo'], tempo_img = dados['tempo_img'], tempoProxDias = dados['tempoProxDias'],cor=dados['cor']))
 
 @app.route('/mudaLuz',methods=['POST'])
 def mudaLuz():
     dados = request.get_json()
-    print(dados)
     return {"true":True}
 
 @app.route('/lampada/estado',methods=['POST'])

@@ -22,7 +22,7 @@
 
 </head>
 
-<body style="background-color:{{cor}}">
+<body id="corFundo"style="background-color:{{cor}}">
     <div class="container d-flex justify-content-center">
 
         <div class="row mt-5 col-11">
@@ -34,22 +34,22 @@
                     <div class="col-6 border">
 
                         <div class="row info-tempo">
-                            <b style="font-size: larger;">{{tempo.city}}</b>
+                            <b style="font-size: larger;" id="city">{{tempo.city}}</b>
                             <div class="row">
                                 <div class="col">
-                                    <img src="{{tempo_img}}" class="vaiKikarSim" alt="" srcset="" width="100px" height="90px">
+                                    <img src="{{tempo_img}}" id="imagem" class="vaiKikarSim" alt="" srcset="" width="100px" height="90px">
 
                                 </div>
                                 <div class="col">
-                                    <h2 style="font-weight: bolder;">{{tempo.temp}}°</h2>
+                                    <h2 style="font-weight: bolder;" id="temperatura">{{tempo.temp}}°</h2>
 
                                 </div>
                             </div>
-                            <span>{{tempo.description}}</span> <br>
+                            <span id="descricao">{{tempo.description}}</span> <br>
                             <hr>
-                            Vento: {{tempo.wind_speedy}} <br>
+                            <span id="vento">Vento: {{tempo.wind_speedy}}</span> <br>
                             <hr>
-                            Umidade: {{tempo.humidity}}
+                            <span id="umidade">Umidade: {{tempo.humidity}}</span>
                         </div>
 
                     </div>
