@@ -4,16 +4,12 @@ from pyA20.gpio import gpio
 from pyA20.gpio import port
 import time
 
-PA_11 = led = port.PA11
+PA_11 = 11
 gpio.init()
 gpio.setcfg( PA_11, gpio.OUTPUT )
 
 def estado_led(estado):
-    if estado == True:
-        gpio.output(led, 1)
-    if estado == False:
-        gpio.output(led, 0)
-
+    gpio.output(PA_11, not estado)
 
 class led():
     def __init__(self, led_count : int, led_pin : int, led_freq_hz : int, led_dma : int, led_brightness : int, led_invert : bool, led_channel : int):
@@ -24,7 +20,7 @@ class led():
         self.LED_BRIGHTNESS = led_brightness # Quanto mais próximo do 0 mais escuro e mais claro é proximo do 255
         self.LED_INVERT = led_invert         # True para inverter o sinal (Apenas quando usar um NPN transistor level shift)
         self.LED_CHANNEL = led_channel       # Altere para 1 para as GPIOs (13, 19, 41, 45 ou 53)
-        
+
         self.strip = PixelStrip(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT, self.LED_BRIGHTNESS, self.LED_CHANNEL)
         # Inicializa a biblioteca
         self.strip.begin()
@@ -32,22 +28,22 @@ class led():
         def oneCollor(color : Color) -> None:
             for x in range(0, self.LED_COUNT):
                 self.setPixelColor(x, color)
-            
+
             self.strip.show()
-        
+
         def coresClima(self,json,chaveJson):
             return
 
-        
+
 
 if __name__ == '__main__':
     fitaLed = led(60, 18, 8000, 10, 255, False, 0)
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-   
+
 
     print('Press Ctrl-C to quit.')
     if not args.clear:
