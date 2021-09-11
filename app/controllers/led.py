@@ -1,5 +1,19 @@
 from rpi_ws281x import PixelStrip, Color
 import argparse
+from pyA20.gpio import gpio
+from pyA20.gpio import port
+import time
+
+PA_11 = led = port.PA11
+gpio.init()
+gpio.setcfg( PA_11, gpio.OUTPUT )
+
+def estado_led(estado):
+    if estado == True:
+        gpio.output(led, 1)
+    if estado == False:
+        gpio.output(led, 0)
+
 
 class led():
     def __init__(self, led_count : int, led_pin : int, led_freq_hz : int, led_dma : int, led_brightness : int, led_invert : bool, led_channel : int):

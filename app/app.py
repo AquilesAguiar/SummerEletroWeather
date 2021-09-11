@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request,url_for,redirect,make_response
 from controllers.tempo import Tempo
 from controllers.lerJson import lerJson
-# from controllers import led
+# from controllers.led import led,estado_led
 
 app = Flask('SummerEltroWeather')
 
@@ -35,6 +35,7 @@ def mudaLuz():
 @app.route('/lampada/estado',methods=['POST'])
 def lampadaEstado():
     estadoLampada = request.get_json()
+    # estado_led(estadoLampada)
     print(estadoLampada)
     return {'lampada': True}
 
