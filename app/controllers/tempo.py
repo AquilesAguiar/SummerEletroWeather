@@ -6,7 +6,7 @@ from controllers.lerJson import lerJson
 # gateway_padrao = gateways['default'][netifaces.AF_INET][0]
 class Tempo():
     def __init__(self):
-        jsonKeys = lerJson("static\json\keys.json")
+        jsonKeys = lerJson("/home/caiomsg/Documentos/GitHub/SummerEletroWeather/static/json/keys.json")
         jsonKeys = jsonKeys.lerJson()
         keys = jsonKeys['keys']
         for key in keys:
