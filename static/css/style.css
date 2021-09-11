@@ -52,7 +52,7 @@ a:hover {
 
 .container {
     height: 900px;
-    background-color: white;
+    background-color: white !important;
     box-shadow: inset 0 0 1em grey, 0 0 4em black;
     /* position: inherit; */
 }
