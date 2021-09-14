@@ -1,8 +1,8 @@
 from rpi_ws281x import PixelStrip, Color
-import argparse
 from pyA20.gpio import gpio
 from pyA20.gpio import port
-import time
+
+import time, argparse
 
 PA_11 = 11
 gpio.init()

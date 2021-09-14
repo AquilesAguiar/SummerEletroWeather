@@ -1,17 +1,12 @@
-import requests, os, platform
-from controllers.lerJson import lerJson
+import requests
+from controllers.JsonController import JsonReader, getSettingsPath
 
-
-class Tempo():
+class TempoController():
     def __init__(self):
+        settingsJson = JsonReader( getSettingsPath() )
+        settingsKeys = settingsJson['API_KEYS']
 
-        if platform.system().lower() == "windows":
-            jsonKeys = lerJson( os.getcwd() + '\\static\\json\\keys.json' )
-        else:
-            jsonKeys = lerJson( os.getcwd() + '\static\json\keys.json' )
-        jsonKeys = jsonKeys.lerJson()
-        keys = jsonKeys['keys']
-        for key in keys:
+        for key in settingsKeys:
             self.url = 'https://api.hgbrasil.com/weather?key='+key+'&user_ip=remote'
             self.req = requests.get(self.url)
             if self.req.status_code == 200:
