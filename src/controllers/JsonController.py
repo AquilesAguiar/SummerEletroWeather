@@ -8,7 +8,7 @@ def JsonReader( pathFile ):
 
 
 def getSettingsPath():
-    return os.path.join( os.getcwd(), 'settings', 'settings.json' )
+    return os.path.join( os.getcwd(),'src','settings', 'settings.json' )
 
 def getJsonDto(tempo, img, tempoProxDias, cor):
     return {

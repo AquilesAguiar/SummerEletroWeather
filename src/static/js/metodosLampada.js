@@ -14,6 +14,17 @@ estado.addEventListener('click', function () {
 //Troca o modo da lampada
 var modo = document.getElementById('modo');
 modo.addEventListener('click', function () {
+    if(modo.checked == true) {
+        document.getElementById('escolheCor').innerHTML = 'Escolhe a cor'
+        document.getElementById('colorPicker').disabled = false;
+    }
+    if(modo.checked == false) {
+        document.getElementById('escolheCor').innerHTML = 'Escolhe a cor (Disponivel apenas no modo Smart)'
+        document.getElementById('colorPicker').disabled = true;
+    }
+    
+    
+    
     fetch('/lampada/modo', {
         method: 'POST',
         body: JSON.stringify({ modo: modo.checked }),

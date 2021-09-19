@@ -4,7 +4,7 @@ from controllers.JsonController import getSettingsPath, JsonReader, getJsonDto
 # from controllers.LedController import estado_led
 import platform
 
-app = Flask('SummerEltroWeather')
+app = Flask('SummerEltroWeather',template_folder="src\\templates",static_folder="src\\static")
 
 @app.route('/')
 def index():
