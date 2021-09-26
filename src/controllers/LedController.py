@@ -17,7 +17,7 @@ def setFitaAllColor(r, g, b):
 def efeitoLed(corDia):
     cont = 0
     while True:
-        if cont >=1:
+        if cont >1:
             cont = 0
         sep = corDia[cont].split(',')
         executarFita(setFitaAllColor(int(sep[0]), int(sep[1]), int(sep[2])))
