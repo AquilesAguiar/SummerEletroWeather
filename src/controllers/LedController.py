@@ -1,5 +1,6 @@
 import spidev
 import ws2812
+from time import sleep
 
 SPI = spidev.SpiDev()
 SPI.open(0,0)
@@ -20,6 +21,7 @@ def efeitoLed(corDia):
         if cont >1:
             cont = 0
         sep = corDia[cont].split(',')
+        sleep(0.5)
         executarFita(setFitaAllColor(int(sep[0]), int(sep[1]), int(sep[2])))
         cont += 1
 
