@@ -42,7 +42,7 @@ setInterval(function () {
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
         });
-}, 50000);
+}, 500000);
 
 function adicionaRole(weekday, date, max, min, description) {
     return `

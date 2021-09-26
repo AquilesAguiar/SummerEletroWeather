@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from controllers.TempoController import TempoController
 from controllers.JsonController import getSettingsPath, JsonReader, getJsonDto
-# from controllers.LedController import estado_led
+# from controllers.LedController import *
 import platform
 
 app = Flask('SummerEltroWeather',template_folder="src\\templates",static_folder="src\\static")
@@ -17,6 +17,7 @@ def index():
     img = clima.getFotoTempo()
 
     cor = settingsColors[ tempo['condition_slug'] ]
+    # efeitoLed(cor)
     tempoProxDias = clima.getProxTempoImg(settingsCondicao)
 
     if request.args.get('type'):
@@ -28,12 +29,17 @@ def index():
 @app.route( '/mudaLuz', methods=['POST'] )
 def mudaLuz():
     dados = request.get_json()
+    JsonCor = JsonReader(getSettingsPath())["CORES_LEDS"][dados]
+    # efeitoLed(JsonCor)
     return {"true":True}
 
 @app.route( '/lampada/estado', methods=['POST'] )
 def lampadaEstado():
     estadoLampada = request.get_json()
-    # estado_led(estadoLampada)
+    # if estadoLampada['estado'] == False:
+    #     executarFita(setFitaAllColor(0, 0, 0))
+    # else:
+    #     executarFita(setFitaAllColor(255, 255, 255))
     print(estadoLampada)
     return {'lampada': True}
 
