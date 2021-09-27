@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, Response
 from controllers.TempoController import TempoController
 from controllers.JsonController import getSettingsPath, JsonReader, getJsonDto, getDatabasePath, JsonSave
-from controllers.LedController import executarFita, setFitaAllColor, setColorArray
+# from controllers.LedController import executarFita, setFitaAllColor, setColorArray
 import platform, os
 
 app = Flask(
@@ -33,8 +33,8 @@ def index():
         JsonCor = cor[0].split(',')
         arrayColor = list(map(lambda num: int(num), JsonCor ) )
 
-    if database['estado']:
-        setColorArray(arrayColor)
+    # if database['estado']:
+        # setColorArray(arrayColor)
 
     tempoProxDias = clima.getProxTempoImg(settingsCondicao)
 
@@ -57,11 +57,17 @@ def mudaLuz():
         database['cor_atual'] = arrayColor
         JsonSave(getDatabasePath(), database)
 
-        setColorArray(arrayColor)
+        # setColorArray(arrayColor)
 
     return {'arrayColor': arrayColor }
 
-
+@app.route( '/atualizaLocalizacao', methods=['POST'] )
+def atualizaLocalizacao():
+    dados = request.get_json()
+    database = JsonReader(getDatabasePath())
+    database["localizacao"] = dados['cidade']+','+dados['estado'].upper()
+    JsonSave(getDatabasePath(), database)
+    return {'novaLoc':dados}
 
 @app.route( '/lampada/estado', methods=['POST'] )
 def lampadaEstado():
@@ -72,7 +78,7 @@ def lampadaEstado():
         database['estado'] = estado
         JsonSave(getDatabasePath(), database)
 
-        executarFita( setFitaAllColor(0, 0, 0) )
+        # executarFita( setFitaAllColor(0, 0, 0) )
 
     return {'modo': estado }
 
@@ -121,7 +127,7 @@ def lampadaMudaCor():
         if database['estado']:
             database['cor_atual'] = arrayColor
             JsonSave(getDatabasePath(), database)
-            setColorArray(arrayColor)
+            # setColorArray(arrayColor)
 
     return {'arrayColor': arrayColor }
 

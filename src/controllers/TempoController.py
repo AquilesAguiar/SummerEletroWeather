@@ -1,13 +1,14 @@
 import requests
-from controllers.JsonController import JsonReader, getSettingsPath
+from controllers.JsonController import JsonReader, getSettingsPath,getDatabasePath
 
 class TempoController():
     def __init__(self):
         settingsJson = JsonReader( getSettingsPath() )
         settingsKeys = settingsJson['API_KEYS']
-
+        database = JsonReader( getDatabasePath() )
+        cityName = database["localizacao"]
         for key in settingsKeys:
-            self.url = 'https://api.hgbrasil.com/weather?key='+key+'&user_ip=remote'
+            self.url = 'https://api.hgbrasil.com/weather?key='+key+'&city_name='+cityName
             self.req = requests.get(self.url)
             if self.req.status_code == 200:
                 self.req = self.req.json()

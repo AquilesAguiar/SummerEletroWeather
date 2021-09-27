@@ -28,13 +28,22 @@
         <div class="row mt-5 col-11">
             <div class="col-lg" style="top: 0">
                 <h1 style="text-align: center;">SummerEletroWeather</h1>
-
+                
                 <div class="row">
 
                     <div class="col-6 border">
 
                         <div class="row info-tempo">
-                            <b style="font-size: large;" id="city">{{tempo.city}}</b>
+                            <b style="font-size: large;" id="city">
+                                {{tempo.city}} 
+                                <button type="button" class="btn" data-bs-toggle="modal" title="Mude a localização" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                      </svg>
+                                </button>
+                            </b>
+                            
                             <div class="row">
                                 <div class="col">
                                     <img src="{{tempo_img}}" id="imagem" class="vaiKikarSim" alt="" srcset="" width="100px" height="90px">
@@ -162,7 +171,7 @@
 
                     <div class="col">
                         <div class="row">
-                            <h4 style="font-weight: bolder;">Clima/Smart</h4>
+                            <h4 style="font-weight: bolder;">Clima - Smart</h4>
 
                             <!-- Rectangular switch -->
                             <label class="switch">
@@ -201,6 +210,56 @@
                 </div>
 
             </div> <!-- COL -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Configuração de localização</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p name="locAtual">Localização: {{tempo.city}} </p>
+                        <h4>Insira a nova localização: </h4>
+                        <label for="locEstado">Estado:</label>
+                        <select name="locEstado" id="locEstado"> 
+                            <option value="ac">Acre</option> 
+                            <option value="al">Alagoas</option> 
+                            <option value="am">Amazonas</option> 
+                            <option value="ap">Amapá</option> 
+                            <option value="ba">Bahia</option> 
+                            <option value="ce">Ceará</option> 
+                            <option value="df">Distrito Federal</option> 
+                            <option value="es">Espírito Santo</option> 
+                            <option value="go">Goiás</option> 
+                            <option value="ma">Maranhão</option> 
+                            <option value="mt">Mato Grosso</option> 
+                            <option value="ms">Mato Grosso do Sul</option> 
+                            <option value="mg">Minas Gerais</option> 
+                            <option value="pa">Pará</option> 
+                            <option value="pb">Paraíba</option> 
+                            <option value="pr">Paraná</option> 
+                            <option value="pe">Pernambuco</option> 
+                            <option value="pi">Piauí</option> 
+                            <option value="rj">Rio de Janeiro</option> 
+                            <option value="rn">Rio Grande do Norte</option> 
+                            <option value="ro">Rondônia</option> 
+                            <option value="rs">Rio Grande do Sul</option> 
+                            <option value="rr">Roraima</option> 
+                            <option value="sc">Santa Catarina</option> 
+                            <option value="se">Sergipe</option> 
+                            <option value="sp">São Paulo</option> 
+                            <option value="to">Tocantins</option> 
+                        </select>
+                        <label for="cidade">Cidade</label>
+                        <input type="text" name="cidade" id="cidade" placeholder="Serra">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" id="salvarLoc" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+  
         </div>
         <script>
             $("#slider").roundSlider({

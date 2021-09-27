@@ -36,3 +36,18 @@ modo.addEventListener('click', function () {
 
 });
 
+
+var localizacao = document.getElementById('salvarLoc');
+localizacao.addEventListener('click', function () {
+    cidade = document.getElementById('cidade').value;
+    estado = document.getElementById('locEstado').value;
+    fetch('/atualizaLocalizacao', {
+        method: 'POST',
+        body: JSON.stringify({'cidade':cidade,'estado':estado}),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+        .then((response) => response.json())
+        .then((json) => '')
+        .catch((err) => console.error(err));
+});
+
