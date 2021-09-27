@@ -9,11 +9,12 @@ document.querySelectorAll('input[type=color]').forEach(function (picker) {
                 })
                 .join(',') +
             ')';
+            arrayColor = cor.replace('rgb(', '').replace(')', '').split(',').map((value) => parseInt(value) )
         document.getElementById('corSelecionada').value = cor;
         // Muda a cor da lampada
         fetch('/lampada/mudaCor', {
             method: 'POST',
-            body: JSON.stringify({ cor: cor }),
+            body: JSON.stringify({ arrayColor }),
             headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
             .then((response) => response.json())

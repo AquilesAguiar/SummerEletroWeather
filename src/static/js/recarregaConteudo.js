@@ -1,4 +1,12 @@
 var link = window.location.href;
+
+
+// const link = window.location.href;
+
+// const estado = document.getElementById('estado');
+// const modo = document.getElementById('modo');
+
+
 setInterval(function () {
     fetch(link + '/?type=json')
         .then((response) => response.json())
