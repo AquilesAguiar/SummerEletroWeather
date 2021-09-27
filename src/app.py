@@ -25,6 +25,7 @@ def index():
     database = JsonReader( getDatabasePath() )
     modo = database['modo']
 
+
     if modo:
         arrayColor = database['cor_atual']
     else:
@@ -42,6 +43,7 @@ def index():
     if request.args.get('reset'):
         return { "ok" : True }
 
+    cor = settingsColors[ tempo['condition_slug'] ]
     return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})")
 
 @app.route( '/mudaLuz', methods=['POST'] )
