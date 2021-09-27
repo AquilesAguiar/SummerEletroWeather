@@ -1,10 +1,26 @@
 var link = window.location.href;
 
 
-// const link = window.location.href;
-
 // const estado = document.getElementById('estado');
 // const modo = document.getElementById('modo');
+// const color = document.getElementById('colorPicker')
+// document.getElementById('colorPickerMain').hidden = false;
+
+Inicializar();
+
+function Inicializar(){
+    fetch(link + '/database')
+        .then((response) => response.json())
+        .then((json) => {
+            console.log("Inicializando Pagina");
+            document.getElementById('modo').checked = json.modo
+            document.getElementById('colorPickerMain').hidden = !json.modo
+            document.getElementById('estado').checked = json.estado
+            cor = json.cor_atual
+            document.getElementById('colorPicker').value = rgbToHex(cor[0], cor[1], cor[2])
+        })
+        .catch((error) => console.log(error));
+}
 
 
 setInterval(function () {
@@ -86,4 +102,13 @@ function adicionaRole(weekday, date, max, min, description) {
 
     </div>
     `;
+}
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
