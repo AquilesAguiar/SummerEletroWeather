@@ -1,10 +1,11 @@
 {
     "modo": false,
-    "estado": false,
+    "estado": true,
     "cor_atual": [
         0,
         0,
         0
     ],
-    "localizacao": "Vila Velha,ES"
+    "localizacao": "Vila Velha,ES",
+    "app": true
 }

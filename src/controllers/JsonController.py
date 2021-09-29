@@ -12,9 +12,13 @@ def JsonReader( pathFile ):
         return json.load( fileJson )
 
 def getSettingsPath():
+    if 'root' in os.getcwd():
+        return os.path.join( os.getcwd(), '..','home', 'projeto', 'SummerEletroWeather','src','settings', 'settings.json' )
     return os.path.join( os.getcwd(),'src','settings', 'settings.json' )
 
 def getDatabasePath():
+    if 'root' in os.getcwd():
+        return os.path.join( os.getcwd(), '..','home', 'projeto', 'SummerEletroWeather','src','database', 'database.json' )
     return os.path.join( os.getcwd(),'src','database', 'database.json' )
 
 def getJsonDto(tempo, img, tempoProxDias, cor):

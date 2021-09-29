@@ -1,16 +1,40 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request
 from controllers.TempoController import TempoController
 from controllers.JsonController import getSettingsPath, JsonReader, getJsonDto, getDatabasePath, JsonSave
-# from controllers.LedController import executarFita, setFitaAllColor, setColorArray
-import platform, os
+from controllers.Thread import setInterval
+from controllers.MainController import busca_atualiza_info_led, inicializacao
+import platform, os, time
+
+IS_LINUX = platform.system().lower() != "windows"
+
+if IS_LINUX:
+    from controllers.LedController import executarFita, setFitaAllColor, setColorArray
+
+if 'root' in os.getcwd():
+    temp_folder = os.path.join( os.getcwd(), '..','home', 'projeto', 'SummerEletroWeather','src','templates' )
+    static_folder = os.path.join( os.getcwd(), '..','home', 'projeto', 'SummerEletroWeather','src','static' )
+else:
+    temp_folder = os.path.join( os.getcwd(),'src','templates' )
+    static_folder = os.path.join( os.getcwd(),'src','static' )
 
 app = Flask(
         'SummerEltroWeather',
-        template_folder = os.path.join( os.getcwd(),'src','templates' ) ,
-        static_folder = os.path.join( os.getcwd(),'src','static' )
+        template_folder = temp_folder ,
+        static_folder = static_folder
     )
 
+# Sempre que for inicializar ligando na tomada
+# ira iniciar no modo clima e ligado
+print("Inicializando aplicação")
+inicializacao()
 
+# Aguarda um tempo devido a função de baixo executar em uma thread
+print("Aguardando um tempinho")
+time.sleep(2)
+
+# 2 em 2 minutos a trhead do python atualiza a informação do tempo na fita led
+print("Iniciando a trhead")
+setInterval(20.0, busca_atualiza_info_led)
 
 @app.route('/')
 def index():
@@ -33,8 +57,9 @@ def index():
         JsonCor = cor[0].split(',')
         arrayColor = list(map(lambda num: int(num), JsonCor ) )
 
-    # if database['estado']:
-        # setColorArray(arrayColor)
+    if database['estado']:
+        if IS_LINUX:
+            setColorArray(arrayColor)
 
     tempoProxDias = clima.getProxTempoImg(settingsCondicao)
 
@@ -57,7 +82,8 @@ def mudaLuz():
         database['cor_atual'] = arrayColor
         JsonSave(getDatabasePath(), database)
 
-        # setColorArray(arrayColor)
+        if IS_LINUX:
+            setColorArray(arrayColor)
 
     return {'arrayColor': arrayColor }
 
@@ -78,7 +104,8 @@ def lampadaEstado():
         database['estado'] = estado
         JsonSave(getDatabasePath(), database)
 
-        # executarFita( setFitaAllColor(0, 0, 0) )
+        if IS_LINUX:
+            executarFita( setFitaAllColor(0, 0, 0) )
 
     return {'modo': estado }
 
@@ -97,6 +124,7 @@ def database():
         if modo != None:
             database['modo'] = modo
 
+
         if cor_atual != None and len(cor_atual) == 3:
             database['cor_atual'] = cor_atual
 
@@ -114,6 +142,7 @@ def lampadaModo():
     if modo != None:
         database = JsonReader( getDatabasePath() )
         database['modo'] = modo
+        database['app'] = not modo
         JsonSave(getDatabasePath(), database)
 
     return {'modo': modo }
@@ -127,13 +156,15 @@ def lampadaMudaCor():
         if database['estado']:
             database['cor_atual'] = arrayColor
             JsonSave(getDatabasePath(), database)
-            # setColorArray(arrayColor)
+
+            if IS_LINUX:
+                setColorArray(arrayColor)
 
     return {'arrayColor': arrayColor }
 
 
 if __name__ == '__main__':
-    if platform.system().lower() == "windows":
-        app.run( debug=True )
+    if IS_LINUX:
+        app.run( host='0.0.0.0', port=8080 )
     else:
-        app.run( host='0.0.0.0', port=8080, debug=True )
+        app.run()
