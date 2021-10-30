@@ -38,11 +38,11 @@ setInterval(20.0, busca_atualiza_info_led)
 
 @app.route('/')
 def index():
-    settingsJson = JsonReader( getSettingsPath() )
-    settingsCondicao = settingsJson['CONDICOES']
-    settingsColors = settingsJson['CORES_LEDS']
-
     try:
+        settingsJson = JsonReader( getSettingsPath() )
+        settingsCondicao = settingsJson['CONDICOES']
+        settingsColors = settingsJson['CORES_LEDS']
+
         clima = TempoController()
         tempo = clima.getTempo()
         img = clima.getFotoTempo()
@@ -63,6 +63,9 @@ def index():
 
         tempoProxDias = clima.getProxTempoImg(settingsCondicao)
 
+        database['internet'] = True
+        JsonSave(getDatabasePath(), database)
+
         if request.args.get('type'):
             return getJsonDto(tempo, img, tempoProxDias, cor)
         if request.args.get('reset'):
@@ -72,6 +75,10 @@ def index():
         return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})")
     except:
         print("Erro de requisição, esta sem internet.")
+        print("Erro de requisição, faltando intenret")
+        database = JsonReader( getDatabasePath() )
+        database['internet'] = False
+        JsonSave(getDatabasePath(), database)
         return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})", error="Voce esta sem internet")
 
 @app.route( '/mudaLuz', methods=['POST'] )

@@ -22,6 +22,10 @@ def busca_atualiza_info_led():
             JsonCor = cor[0].split(',')
             arrayColor = list(map(lambda num: int(num), JsonCor ) )
 
+            database = JsonReader( getDatabasePath() )
+            database['internet'] = True
+            JsonSave(getDatabasePath(), database)
+
             if IS_LINUX:
                 setColorArray(arrayColor)
             return False
