@@ -6,6 +6,7 @@
         0,
         0
     ],
-    "localizacao": "Vila Velha,ES",
-    "app": true
+    "localizacao": "Vila Velha, ES",
+    "app": true,
+    "internet" : true
 }

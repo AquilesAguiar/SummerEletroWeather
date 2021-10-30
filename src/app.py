@@ -42,34 +42,37 @@ def index():
     settingsCondicao = settingsJson['CONDICOES']
     settingsColors = settingsJson['CORES_LEDS']
 
-    clima = TempoController()
-    tempo = clima.getTempo()
-    img = clima.getFotoTempo()
+    try:
+        clima = TempoController()
+        tempo = clima.getTempo()
+        img = clima.getFotoTempo()
 
-    database = JsonReader( getDatabasePath() )
-    modo = database['modo']
+        database = JsonReader( getDatabasePath() )
+        modo = database['modo']
 
+        if modo:
+            arrayColor = database['cor_atual']
+        else:
+            cor = settingsColors[ tempo['condition_slug'] ]
+            JsonCor = cor[0].split(',')
+            arrayColor = list(map(lambda num: int(num), JsonCor ) )
 
-    if modo:
-        arrayColor = database['cor_atual']
-    else:
+        if database['estado']:
+            if IS_LINUX:
+                setColorArray(arrayColor)
+
+        tempoProxDias = clima.getProxTempoImg(settingsCondicao)
+
+        if request.args.get('type'):
+            return getJsonDto(tempo, img, tempoProxDias, cor)
+        if request.args.get('reset'):
+            return { "ok" : True }
+
         cor = settingsColors[ tempo['condition_slug'] ]
-        JsonCor = cor[0].split(',')
-        arrayColor = list(map(lambda num: int(num), JsonCor ) )
-
-    if database['estado']:
-        if IS_LINUX:
-            setColorArray(arrayColor)
-
-    tempoProxDias = clima.getProxTempoImg(settingsCondicao)
-
-    if request.args.get('type'):
-        return getJsonDto(tempo, img, tempoProxDias, cor)
-    if request.args.get('reset'):
-        return { "ok" : True }
-
-    cor = settingsColors[ tempo['condition_slug'] ]
-    return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})")
+        return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})")
+    except:
+        print("Erro de requisição, esta sem internet.")
+        return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})", error="Voce esta sem internet")
 
 @app.route( '/mudaLuz', methods=['POST'] )
 def mudaLuz():
