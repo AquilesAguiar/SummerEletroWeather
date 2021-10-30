@@ -1,0 +1,39 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: #6c7a89;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: azure;
+    width: 50%;
+    border-radius: 30px;
+    box-shadow: inset 0 0 1em grey, 0 0 4em black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+  }
+
+  .button5 {background-color: #555555;} /* Black */
+
+body {
+    margin: 0px;
+}

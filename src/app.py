@@ -79,7 +79,7 @@ def index():
         database = JsonReader( getDatabasePath() )
         database['internet'] = False
         JsonSave(getDatabasePath(), database)
-        return render_template("index.html", tempo = tempo, tempo_img = img, tempoProxDias = tempoProxDias, cor = f"rgb({cor[0]})", error="Voce esta sem internet")
+        return render_template("error.html")
 
 @app.route( '/mudaLuz', methods=['POST'] )
 def mudaLuz():
